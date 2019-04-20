@@ -40,4 +40,17 @@ public class BankAdmin extends User {
 		System.out.println("Application has been Approved and Updated");
 		System.out.println("");
 	}
+	
+	public void withdraw(Account account, long amount) {
+		
+	}
+	
+	public void transfer(long amount, Account fromaccount, long toaccountnumber) {
+		
+	}
+	
+	public void deposit(Account account, long amount) {
+		
+	}
+	
 }

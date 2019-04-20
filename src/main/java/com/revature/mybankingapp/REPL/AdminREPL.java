@@ -45,13 +45,16 @@ public class AdminREPL {
 	}
 
 	private Application getApplicationbyid(long id) {
-		for (Application app : this.applications) {
-			if (app.getApplicationid() == id) {
-				System.out.println(app.getApplicationid());
-				return app;
+		for(int i = 0; i < this.applications.size(); i++)
+		{
+			if(this.applications.get(i).getApplicationid() == id)
+			{
+				System.out.println(applications.get(i).getApplicationid());
+				return this.applications.get(i);
 			}
 		}
-		System.out.println("went to null");
+		
+		System.out.println("went to null in AdminREPL");
 		return null;
 	}
 

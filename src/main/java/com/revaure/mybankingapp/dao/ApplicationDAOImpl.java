@@ -16,13 +16,16 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		PreparedStatement stmt = null;
 		long userid = 0;
 		int success;
+		long result = 0;
 		
 		try {
 			connection = DAOUtilities.getConnection();
-			String sql = "INSERT INTO \"Users\" (firstname, lastname, username, password, usertype) VALUES (?,?,?,?,?)";
-
+			String sql = "INSERT INTO \"Users\" (firstname, lastname, username, password, usertype) VALUES (?,?,?,?,?);SELECT currval('\"Users_userid_seq\"'::regclass);";
+			
+			
 			// Setup PreparedStatement
-			stmt = connection.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
+			stmt = connection.prepareStatement(sql);
+			
 
 			// Add parameters for prepared statement
 			stmt.setString(1, application.getFirstname());
@@ -31,16 +34,16 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt.setString(4, application.getPassword());
 			stmt.setString(5, application.getUsertype());
 	
-			success = stmt.executeUpdate();
+			stmt.execute();
 			
-			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-	            if (generatedKeys.next()) {
-	                userid = generatedKeys.getLong(1);
-	            }
-	            else {
-	                throw new SQLException("Creating user failed, no ID obtained.");
-	            }
-	        }
+			int nInserted = stmt.getUpdateCount();
+			if (nInserted == 1 && stmt.getMoreResults()) {
+			    ResultSet rs = stmt.getResultSet();
+			    if (rs.next()) {
+			    	userid = rs.getLong(1);
+			    }
+			    	
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
