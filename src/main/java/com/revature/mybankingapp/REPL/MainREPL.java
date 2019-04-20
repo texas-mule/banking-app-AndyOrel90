@@ -1,25 +1,22 @@
 package com.revature.mybankingapp.REPL;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.revature.mybankingapp.User;
-import com.revaure.mybankingapp.dao.UserDAO;
-import com.revaure.mybankingapp.dao.UserDAOImpl;
+import com.revature.mybankingapp.Customer;
+import com.revaure.mybankingapp.dao.CustomerDAO;
+import com.revaure.mybankingapp.dao.CustomerDAOImpl;
 
-//import com.examples.ezoo.dao.FeedingScheduleDAO;
-//import com.examples.ezoo.dao.FeedingScheduleDAOImpl;
 
 public class MainREPL {
 	
-	private String usertype;
+	private Customer loggedinuserobj;
 	
 	private boolean handleUserLogin(String username, String password) {
-		User loggedinuser = new User();
-		UserDAO userdao = new UserDAOImpl();
+		Customer loggedinuser = new Customer();
+		CustomerDAO customerdao = new CustomerDAOImpl();
 		
-		loggedinuser = userdao.login(username, password);
+		loggedinuser = customerdao.login(username, password);
 		
 		if(loggedinuser.getFirstname() == null)
 		{
@@ -27,7 +24,7 @@ public class MainREPL {
 		}
 		else
 		{
-			this.usertype = loggedinuser.getUsertype();
+			this.loggedinuserobj = loggedinuser;
 			return false;
 		}
 	}
@@ -70,7 +67,6 @@ public class MainREPL {
 	           System.out.println("Invalid choice");
 	          
 	        } finally {
-	        	 //System.out.println(option);
 	     		
 	     		switch(option) {
 	     			case 1: int count = 0; 
@@ -87,21 +83,20 @@ public class MainREPL {
 			     			{
 			     				//System.out.println("Welcome!!!");
 			     				//run user login interface
-			     				switch(this.usertype) {
+			     				switch(this.loggedinuserobj.getUsertype()) {
 			     					case "customer": //CustomerREPL crepl = new CustomerREPL();
 			     									 //crepl.run();
 			     						break;
 			     					case "employee": //EmployeeREPL erepl = new EmployeeREPL();
 			     									 //erepl.run();
 			     						break;
-			     					case "admin": //AdminREPL arepl = new AdminREPL();
-			     								  //arepl.run();
+			     					case "admin": AdminREPL arepl = new AdminREPL();
+			     								  arepl.run(loggedinuserobj);
 			     						break;
 			     				}
 			     			}
 	     					break;
-	     			case 2: //run ApplicationREPL
-	     					ApplicationREPL arepl = new ApplicationREPL();
+	     			case 2: ApplicationREPL arepl = new ApplicationREPL();
 	     					arepl.run();
 	     					break;
 	     			case 3: exit = false;

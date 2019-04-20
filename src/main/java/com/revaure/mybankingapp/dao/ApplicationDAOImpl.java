@@ -152,6 +152,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		}*/
 		
 	}
+	
 	public void approveApplication(Application application) {
 		
 		Connection connection = null;
@@ -194,6 +195,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		this.insertAccountWhenApproved(application, userid);
 		
 	}
+	
 	public void denyApplication(Application application) {
 		
 		Connection connection = null;

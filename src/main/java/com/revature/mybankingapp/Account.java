@@ -1,5 +1,8 @@
 package com.revature.mybankingapp;
 
+import com.revaure.mybankingapp.dao.AccountDAOImpl;
+import com.revaure.mybankingapp.dao.ApplicationDAOImpl;
+
 public class Account {
 	long accountnumber;
 	long ownerid1;
@@ -7,6 +10,7 @@ public class Account {
 	long routingnumber;
 	long accountbalance;
 	String accounttype;
+	AccountDAOImpl dao = new AccountDAOImpl();
 
 	public long getAccountnumber() {
 		return accountnumber;
@@ -56,16 +60,25 @@ public class Account {
 		this.accounttype = accounttype;
 	}
 
-	public long withdraw(long amount, long accountnumber) {
-		return 0;
+	public String withdraw(Account account, long amount) {
+		
+		 this.dao.withdraw(account, amount);
+		 
+		return "";
 	}
 
-	public long transfer(long amount, long fromaccountnumber, long toaccountnumber) {
-		return 0;
+	public String transfer(long amount, Account fromaccount, long toaccountnumber) {
+		
+		this.dao.transfer(amount, fromaccount, toaccountnumber);
+		
+		return "";
 	}
 
-	public long deposit(long amount, long accountid) {
-		return 0;
+	public String deposit(Account account, long amount) {
+		
+		this.dao.deposit(account, amount);
+		
+		return "";
 	}
 	
 }

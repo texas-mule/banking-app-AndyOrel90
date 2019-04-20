@@ -3,13 +3,20 @@ package com.revature.mybankingapp;
 import java.util.ArrayList;
 
 public class User {
-	long userid;
-	private String firstname;
-	private String lastname;
-	private String username;
-	private String password;
-	private String usertype;
-	private ArrayList<Account> accountlist;
+	protected long userid;
+	protected String firstname;
+	protected String lastname;
+	protected String username;
+	protected String password;
+	protected String usertype;
+	protected ArrayList<Account> accountlist;
+	
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", firstname=" + firstname + ", lastname=" + lastname + ", username="
+				+ username + ", password=" + password + ", usertype=" + usertype + ", accountlist=" + accountlist + "]";
+	}
+	
 	
 	public long getUserid() {
 		return userid;

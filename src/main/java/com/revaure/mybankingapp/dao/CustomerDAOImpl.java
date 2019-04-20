@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.revature.mybankingapp.User;
+import com.revature.mybankingapp.Customer;
 
 
-public class UserDAOImpl implements UserDAO {
+public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
-	public User login(String username, String password) {
+	public Customer login(String username, String password) {
 		
-		User a = new User();
+		Customer a = new Customer();
 		Connection connection = null;
 		PreparedStatement stmt = null;
 
@@ -61,8 +61,8 @@ public class UserDAOImpl implements UserDAO {
 
 
 	@Override
-	public ArrayList<User> getUsers() {
-		ArrayList<User> users = new ArrayList<>();
+	public ArrayList<Customer> getCustomers() {
+		ArrayList<Customer> customer = new ArrayList<>();
 		Connection connection = null;
 		Statement stmt = null;
 
@@ -76,7 +76,7 @@ public class UserDAOImpl implements UserDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				User a = new User();
+				Customer a = new Customer();
 				
 				a.setUserid(rs.getLong("userid"));
 				a.setFirstname(rs.getString("firstname"));
@@ -84,7 +84,7 @@ public class UserDAOImpl implements UserDAO {
 				a.setUsername(rs.getString("username"));
 				a.setUsertype(rs.getString("usertype"));
 				
-				users.add(a);
+				customer.add(a);
 			}
 
 		} catch (SQLException e) {
@@ -102,10 +102,13 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 
-		return users;
+		return customer;
 	}
-	
-	public void addUser(User user) {
+
+
+	@Override
+	public void addCustomer(Customer customer) {
+		// TODO Auto-generated method stub
 		
 	}
 

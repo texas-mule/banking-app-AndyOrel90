@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.revaure.mybankingapp.dao.ApplicationDAO;
 import com.revaure.mybankingapp.dao.ApplicationDAOImpl;
-import com.revaure.mybankingapp.dao.UserDAO;
-import com.revaure.mybankingapp.dao.UserDAOImpl;
+import com.revaure.mybankingapp.dao.CustomerDAO;
+import com.revaure.mybankingapp.dao.CustomerDAOImpl;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -54,7 +54,7 @@ public class AppTest
     {
     	User loggedinuser = new User();
     	User test = new User();
-		UserDAO userdao = new UserDAOImpl();
+		CustomerDAO userdao = new CustomerDAOImpl();
 		
 		loggedinuser = userdao.login("username1", "password1");
 		
@@ -66,15 +66,15 @@ public class AppTest
     public void testUserDAOgetUserRArrayList()
     {
     	//checks if method returns a ArrayList
-    	ArrayList<User> userlist = new ArrayList<>();
+    	ArrayList<Customer> customerlist = new ArrayList<>();
     	
-    	ArrayList<User> test = new ArrayList<>();
+    	ArrayList<Customer> test = new ArrayList<>();
 
-		UserDAO userdao = new UserDAOImpl();
+		CustomerDAO customerdao = new CustomerDAOImpl();
 		
-		userlist = userdao.getUsers();
+		customerlist = customerdao.getCustomers();
 		
-		Class aClass = userlist.getClass();
+		Class aClass = customerlist.getClass();
     	
         assertTrue(aClass.isInstance(test));
     }
@@ -82,15 +82,15 @@ public class AppTest
     public void testUserDAOgetUserRArrayListUser()
     {
     	//checks if method returns a ArrayList and inside the list are users
-    	ArrayList<User> userlist = new ArrayList<>();
+    	ArrayList<Customer> customerlist = new ArrayList<>();
     	
-    	User user = new User();
-    	User testuser = new User();
-		UserDAO userdao = new UserDAOImpl();
+    	Customer customer = new Customer();
+    	User testuser = new Customer();
+		CustomerDAO customerdao = new CustomerDAOImpl();
 		
-		user = userdao.getUsers().get(0);
+		customer = customerdao.getCustomers().get(0);
 		
-		Class aClass = user.getClass();
+		Class aClass = customer.getClass();
     	
         assertTrue(aClass.isInstance(testuser));
     }

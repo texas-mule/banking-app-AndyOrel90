@@ -13,6 +13,13 @@ public class Application {
 	long depositamount;
 	String status;
 	
+	@Override
+	public String toString() {
+		return "Application [applicationid=" + applicationid + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", username=" + username + ", password=" + password + ", usertype=" + usertype + ", accounttype="
+				+ accounttype + ", depositamount=" + depositamount + ", status=" + status + "]";
+	}
+
 	public Application(long applicationid, String firstname, String lastname, String username, String password,
 			String usertype, String accounttype, long depositamount, String status) {
 		super();
