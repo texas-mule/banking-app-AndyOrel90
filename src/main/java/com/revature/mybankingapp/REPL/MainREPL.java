@@ -81,11 +81,10 @@ public class MainREPL {
 			     			}
 			     			if(!breakfromloop)
 			     			{
-			     				//System.out.println("Welcome!!!");
 			     				//run user login interface
 			     				switch(this.loggedinuserobj.getUsertype()) {
-			     					case "customer": //CustomerREPL crepl = new CustomerREPL();
-			     									 //crepl.run();
+			     					case "customer": CustomerREPL crepl = new CustomerREPL();
+			     									 crepl.run();
 			     						break;
 			     					case "employee": //EmployeeREPL erepl = new EmployeeREPL();
 			     									 //erepl.run();

@@ -121,7 +121,6 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt = connection.prepareStatement(sql);
 
 			// Add parameters for prepared statement
-			//stmt.setLong(1, 0);
 			
 			stmt.setString(1, application.getFirstname());
 			stmt.setString(2, application.getLastname());
@@ -236,6 +235,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		}
 		
 	}
+	
 	public ArrayList<Application> getApplications(){
 	
 			ArrayList<Application> apps = new ArrayList<>();

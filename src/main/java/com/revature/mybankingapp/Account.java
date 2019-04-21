@@ -61,24 +61,22 @@ public class Account {
 	}
 
 	public String withdraw(Account account, long amount) {
+
+		return this.dao.withdraw(account, amount);
 		
-		 this.dao.withdraw(account, amount);
-		 
-		return "";
 	}
 
 	public String transfer(long amount, Account fromaccount, long toaccountnumber) {
+
+		return this.dao.transfer(amount, fromaccount, toaccountnumber);
 		
-		this.dao.transfer(amount, fromaccount, toaccountnumber);
-		
-		return "";
 	}
 
 	public String deposit(Account account, long amount) {
 		
-		this.dao.deposit(account, amount);
+		return this.dao.deposit(account, amount);
 		
-		return "";
 	}
-	
+
+
 }

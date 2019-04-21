@@ -2,9 +2,13 @@ package com.revaure.mybankingapp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.revature.mybankingapp.Account;
+import com.revature.mybankingapp.Application;
 
 public class AccountDAOImpl implements AccountDAO {
 
@@ -21,7 +25,7 @@ public class AccountDAOImpl implements AccountDAO {
 			try {
 				connection = DAOUtilities.getConnection();
 
-				String sql = "UPDATE \"Account\" SET accountbalance = ? WHERE accountnumber = ?;";
+				String sql = "UPDATE \"Accounts\" SET accountbalance = ? WHERE accountnumber = ?;";
 
 				// Setup PreparedStatement
 				stmt = connection.prepareStatement(sql);
@@ -49,7 +53,8 @@ public class AccountDAOImpl implements AccountDAO {
 			}
 
 			account.setAccountbalance(newaccountbalance);
-			return "Your new account balance is: " + newaccountbalance;
+			
+			return "The amount of: " + amount + " has been withdraw from Account Number: " + account.getAccountnumber() + "\nYour new account balance is: " + newaccountbalance;
 		}
 
 	}
@@ -67,7 +72,7 @@ public class AccountDAOImpl implements AccountDAO {
 			try {
 				connection = DAOUtilities.getConnection();
 
-				String sql = "UPDATE \"Account\" SET accountbalance = ? WHERE accountnumber = ?;";
+				String sql = "UPDATE \"Accounts\" SET accountbalance = ? WHERE accountnumber = ?;";
 
 				// Setup PreparedStatement
 				stmt = connection.prepareStatement(sql);
@@ -97,7 +102,7 @@ public class AccountDAOImpl implements AccountDAO {
 			try {
 				connection = DAOUtilities.getConnection();
 
-				String sql = "UPDATE \"Account\" SET accountbalance = accountbalance + ? WHERE accountnumber = ?;";
+				String sql = "UPDATE \"Accounts\" SET accountbalance = accountbalance + ? WHERE accountnumber = ?;";
 
 				// Setup PreparedStatement
 				stmt = connection.prepareStatement(sql);
@@ -126,7 +131,7 @@ public class AccountDAOImpl implements AccountDAO {
 
 			fromaccount.setAccountbalance(newfromaccountbalance);
 
-			return "The amount of: " + amount + "has been successfully transfered.\nYour new account balance is: " + newfromaccountbalance;
+			return "The amount of: " + amount + " has been successfully transfered.\nYour new account balance is: " + newfromaccountbalance;
 		}
 	}
 
@@ -139,7 +144,7 @@ public class AccountDAOImpl implements AccountDAO {
 		try {
 			connection = DAOUtilities.getConnection();
 
-			String sql = "UPDATE \"Account\" SET accountbalance = ? WHERE accountnumber = ?;";
+			String sql = "UPDATE \"Accounts\" SET accountbalance = ? WHERE accountnumber = ?;";
 
 			// Setup PreparedStatement
 			stmt = connection.prepareStatement(sql);
@@ -166,7 +171,56 @@ public class AccountDAOImpl implements AccountDAO {
 			}
 		}
 
-		return "Your new account balance is: " + newaccountbalance;
+		account.setAccountbalance(newaccountbalance);
+		
+		return "The amount of: " + amount + " has been deposited to Account Number: " + account.getAccountnumber() + "\nYour new account balance is: " + newaccountbalance;
 
+	}
+	
+	public ArrayList<Account> getAccounts(){
+			
+			ArrayList<Account> accounts = new ArrayList<>();
+			Connection connection = null;
+			Statement stmt = null;
+
+			try {
+				connection = DAOUtilities.getConnection();
+
+				stmt = connection.createStatement();
+
+				String sql = "SELECT * FROM \"Accounts\"";
+
+				ResultSet rs = stmt.executeQuery(sql);
+
+				while (rs.next()) {
+					Account a = new Account();
+					
+					a.setAccountnumber(rs.getLong("accountnumber"));
+					a.setOwnerid1(rs.getLong("ownerid1"));
+					a.setOwnerid2(rs.getLong("ownerid2"));
+					a.setRoutingnumber(rs.getLong("routingnumber"));
+					a.setAccountbalance(rs.getLong("accountbalance"));
+					a.setAccounttype(rs.getString("accounttype"));
+					
+					accounts.add(a);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+					if (connection != null) {
+						connection.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			return accounts;
+	
 	}
 }
