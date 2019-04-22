@@ -177,6 +177,42 @@ public class AccountDAOImpl implements AccountDAO {
 
 	}
 	
+	public String cancel(Account account) {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+
+		try {
+			connection = DAOUtilities.getConnection();
+
+			String sql = "UPDATE \"Accounts\" SET accountstatus = 'canceled' WHERE accountnumber = ?;";
+
+			// Setup PreparedStatement
+			stmt = connection.prepareStatement(sql);
+
+			// Add parameters for prepared statement
+			stmt.setLong(1, account.getAccountnumber());
+
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return "Account Number: " + account.getAccountnumber() + " has been canceled";
+
+	}
+	
 	public ArrayList<Account> getAccounts(){
 			
 			ArrayList<Account> accounts = new ArrayList<>();

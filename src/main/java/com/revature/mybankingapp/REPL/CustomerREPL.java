@@ -305,7 +305,7 @@ public class CustomerREPL extends ConsoleREPL {
 				case 5: // apply for new account
 					//ApplicationREPL arepl = new ApplicationREPL();
  					//arepl.run();
-				case 6: // withdraw
+				case 6: // apply for a joint account
 					int count6 = 0;
 					while (this.option6()) {
 						if (count6 >= 2) {

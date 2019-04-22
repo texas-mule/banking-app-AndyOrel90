@@ -329,6 +329,39 @@ public class AdminREPL {
 
 	}
 
+	private boolean option5() {
+		Scanner input = new Scanner(System.in);
+		Account accountobj = new Account();
+		long accountnumber = -1;
+
+		// from account
+		System.out.println("Enter Account Number you would like to Cancel");
+		System.out.print("Account Number: ");
+
+		try {
+			accountnumber = input.nextLong();
+
+		} catch (InputMismatchException e) {
+			input.next();
+
+			System.out.println("Invalid character");
+			return true;
+		}
+
+		accountobj = this.getAccountByAccountnumber(accountnumber);
+
+		if (accountobj == null) {
+			System.out.println("");
+			System.out.println("Account not found");
+			System.out.println("");
+			return true;
+		}
+
+		this.admin.cancel(accountobj);
+		return false;
+
+	}
+
 	public void run(Customer loggedinuser) {
 
 		Scanner input = new Scanner(System.in);
@@ -391,7 +424,13 @@ public class AdminREPL {
 					}
 					break;
 				case 5: // cancel account
-						// admin.cancelAccount();
+					int count5 = 0;
+					while (this.option5()) {
+						if (count5 >= 2) {
+							break;
+						}
+						count5++;
+					}
 					break;
 				case 6: // withdraw
 					int count6 = 0;

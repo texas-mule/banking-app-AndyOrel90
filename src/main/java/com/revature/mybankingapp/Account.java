@@ -77,6 +77,9 @@ public class Account {
 		return this.dao.deposit(account, amount);
 		
 	}
-
+	
+	public String cancel(Account account) {
+		return this.dao.cancel(account);
+	}
 
 }

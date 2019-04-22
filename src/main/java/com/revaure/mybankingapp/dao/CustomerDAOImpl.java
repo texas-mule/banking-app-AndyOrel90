@@ -280,7 +280,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		try {
 			connection = DAOUtilities.getConnection();
 
-			String sql = "SELECT * FROM \"Accounts\" WHERE ownerid1 = ?";
+			String sql = "SELECT * FROM \"Accounts\" WHERE ownerid1 = ? AND accountstatus = 'active'";
 
 			stmt = connection.prepareStatement(sql);
 

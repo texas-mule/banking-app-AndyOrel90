@@ -44,6 +44,7 @@ public class Customer extends User {
 	}
 	
 	public ArrayList<Account> getAccountList(){
+		this.setAccountList();
 		return this.accountlist;
 	}
 

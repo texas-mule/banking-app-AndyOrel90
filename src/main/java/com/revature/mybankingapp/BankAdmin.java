@@ -60,5 +60,11 @@ public class BankAdmin extends User {
 		System.out.println(account.deposit(account, depositamount));
 		System.out.println("");
 	}
+	
+	public void cancel(Account account) {
+		System.out.println("");
+		System.out.println(account.cancel(account));
+		System.out.println("");
+	}
 
 }
