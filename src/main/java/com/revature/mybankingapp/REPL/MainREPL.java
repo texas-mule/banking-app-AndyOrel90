@@ -89,8 +89,8 @@ public class MainREPL {
 			     					case "customer": CustomerREPL crepl = new CustomerREPL();
 			     									 crepl.run(loggedinuserobj);
 			     						break;
-			     					case "employee": //EmployeeREPL erepl = new EmployeeREPL();
-			     									 //erepl.run();
+			     					case "employee": EmployeeREPL erepl = new EmployeeREPL();
+			     									 erepl.run(loggedinuserobj);
 			     						break;
 			     					case "admin": AdminREPL arepl = new AdminREPL();
 			     								  arepl.run(loggedinuserobj);
