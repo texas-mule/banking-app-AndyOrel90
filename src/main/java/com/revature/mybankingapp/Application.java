@@ -12,7 +12,16 @@ public class Application {
 	String accounttype;
 	long depositamount;
 	String status;
-	
+	long currentuser;
+
+	public long getCurrentuser() {
+		return currentuser;
+	}
+
+	public void setCurrentuser(long currentuser) {
+		this.currentuser = currentuser;
+	}
+
 	@Override
 	public String toString() {
 		return "Application [applicationid=" + applicationid + ", firstname=" + firstname + ", lastname=" + lastname
@@ -33,11 +42,11 @@ public class Application {
 		this.depositamount = depositamount;
 		this.status = status;
 	}
-	
+
 	public Application() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public long getApplicationid() {
 		return applicationid;
 	}
@@ -109,14 +118,19 @@ public class Application {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
 
-	public void save() {
+	public void saveNewApplication() {
 
-		 ApplicationDAOImpl dao = new ApplicationDAOImpl();
-		 dao.saveApplication(this);
-		 
+		ApplicationDAOImpl dao = new ApplicationDAOImpl();
+		dao.saveNewApplication(this);
+
 	}
-	
-	
+
+	public void saveNewApplicationFromUser() {
+
+		ApplicationDAOImpl dao = new ApplicationDAOImpl();
+		dao.saveNewApplicationFromUser(this);
+
+	}
+
 }

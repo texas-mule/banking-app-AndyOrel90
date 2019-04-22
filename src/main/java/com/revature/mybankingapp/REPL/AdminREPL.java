@@ -88,7 +88,15 @@ public class AdminREPL {
 			if (appid < 0) {
 				return true;
 			} else {
-				this.admin.approveApplication(app);
+				if(app.getStatus().equals(new String("customerapplied")))
+				{
+					this.admin.approveCustomerApplication(app);
+				}
+				else
+				{
+					this.admin.approveApplication(app);
+				}
+				
 				return false;
 			}
 		}

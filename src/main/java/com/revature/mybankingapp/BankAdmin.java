@@ -43,6 +43,14 @@ public class BankAdmin extends User {
 		System.out.println("");
 	}
 
+	public void approveCustomerApplication(Application application) {
+		appdao.approveCustomerApplication(application);
+
+		System.out.println("");
+		System.out.println("Application has been Approved and Updated");
+		System.out.println("");
+	}
+
 	public void withdraw(Account account, long withdrawamount) {
 		System.out.println("");
 		System.out.println(account.withdraw(account, withdrawamount));
@@ -60,7 +68,7 @@ public class BankAdmin extends User {
 		System.out.println(account.deposit(account, depositamount));
 		System.out.println("");
 	}
-	
+
 	public void cancel(Account account) {
 		System.out.println("");
 		System.out.println(account.cancel(account));

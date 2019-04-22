@@ -5,7 +5,19 @@ import java.util.Scanner;
 
 import com.revature.mybankingapp.Application;
 
-public class ApplicationREPL {
+public class CustomerApplicationREPL {
+	private String firstname;
+	private String lastname;
+	private long userid;
+	private String username;
+	
+	public CustomerApplicationREPL(String firstname, String lastname, String username, long userid) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.userid = userid;
+		
+	}
 	
 	public void startApplication() {
 		Scanner input = new Scanner(System.in);
@@ -17,15 +29,7 @@ public class ApplicationREPL {
 		int enteredaccounttype = 0;
 		boolean exit2 = true;
 		long depositamount = 25;
-		
-		System.out.print("First Name:");
-		String firstname = input.nextLine();
-		System.out.print("Last Name:");
-		String lastname = input.nextLine();
-		System.out.print("User Name:");
-		String username = input.nextLine();
-		System.out.print("Password:");
-		String password = input.nextLine();
+		long currentuser = 0;
 		
 		//gets input to set up a checking or savings account
 		//loops through if neither hasnt been selected
@@ -81,10 +85,19 @@ public class ApplicationREPL {
 		}
 		
 
-		Application application = new Application(appid, firstname, lastname, username, password,
-				usertype, acttype, depositamount, "applied");
+		Application application = new Application();
+		application.setApplicationid(appid);
+		application.setFirstname(this.firstname);
+		application.setLastname(this.lastname);
+		application.setUsername(this.username);
+		application.setPassword("already exists");
+		application.setUsertype("customer");
+		application.setAccounttype("checking");
+		application.setDepositamount(depositamount);
+		application.setStatus("customerapplied");
+		application.setCurrentuser(this.userid);
 		
-		application.saveNewApplication();
+		application.saveNewApplicationFromUser();
 		
 		
 		System.out.println("");
@@ -130,4 +143,5 @@ public class ApplicationREPL {
 	     		}
 	        }
 	}
+	
 }

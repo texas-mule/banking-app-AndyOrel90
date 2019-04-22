@@ -213,7 +213,7 @@ public class CustomerREPL extends ConsoleREPL {
 		actlist = loggedincustomer.getAccountList();
 
 		System.out.println("Your accounts: ");
-		
+
 		for (int i = 0; i < actlist.size(); i++) {
 			System.out.println("* Routing Number: " + actlist.get(i).getRoutingnumber() + " Account Number: "
 					+ actlist.get(i).getAccountnumber() + " Account Type: " + actlist.get(i).getAccounttype()
@@ -303,8 +303,9 @@ public class CustomerREPL extends ConsoleREPL {
 					}
 					break;
 				case 5: // apply for new account
-					//ApplicationREPL arepl = new ApplicationREPL();
- 					//arepl.run();
+					CustomerApplicationREPL crepl = new CustomerApplicationREPL(this.loggedincustomer.getFirstname(),
+							this.loggedincustomer.getLastname(), this.loggedincustomer.getUsername(), this.loggedincustomer.getUserid());
+					crepl.run();
 				case 6: // apply for a joint account
 					int count6 = 0;
 					while (this.option6()) {
