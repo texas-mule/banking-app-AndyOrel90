@@ -44,7 +44,8 @@ public class MainREPL {
 	}
 	
 	public void run() {
-		
+		//TODO add interface to apply for joint accounts for both user, main interface
+		//left it at added methods to applications so still need to add functionality for joint accounts
 		Scanner input = new Scanner(System.in);
 		int option = 0;
 		boolean exit = true;
@@ -57,8 +58,9 @@ public class MainREPL {
 		System.out.println("Main Menu");
 		System.out.println("Choose your option below:");
 		System.out.println("Press 1 to Login:");
-		System.out.println("Press 2 to Apply for a bank account:");
-		System.out.println("Press 3 to Exit:");
+		System.out.println("Press 2 to Apply for a single member bank account:");
+		System.out.println("Press 3 to Apply for a joint bank account");
+		System.out.println("Press 0 to Exit:");
 		System.out.println("******************************************");
 		
 		try {
@@ -98,10 +100,13 @@ public class MainREPL {
 			     				}
 			     			}
 	     					break;
-	     			case 2: ApplicationREPL arepl = new ApplicationREPL();
+	     			case 2: JointApplicationREPL arepl = new JointApplicationREPL();
 	     					arepl.run();
 	     					break;
-	     			case 3: exit = false;
+	     			case 3: JointApplicationREPL jarepl = new JointApplicationREPL();
+ 							jarepl.run();
+ 					break;
+	     			case 0: exit = false;
 	     					System.out.println("Enjoy your day!!");
  							break;
 	     			default: System.out.println("Try again");

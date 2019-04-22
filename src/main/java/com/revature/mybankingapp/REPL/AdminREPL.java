@@ -377,7 +377,6 @@ public class AdminREPL {
 		boolean exit = true;
 
 		while (exit) {
-
 			System.out.println("");
 			System.out.println("******************************************");
 			System.out.println("Admin Main Menu");

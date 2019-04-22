@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import com.revature.mybankingapp.Application;
 
-public class ApplicationREPL {
+public class JointApplicationREPL {
 	
 	public void startApplication() {
 		Scanner input = new Scanner(System.in);
@@ -18,14 +18,15 @@ public class ApplicationREPL {
 		boolean exit2 = true;
 		long depositamount = 25;
 		
+		System.out.println("First User Info:");
 		System.out.print("First Name:");
-		String firstname = input.nextLine();
+		String firstname1 = input.nextLine();
 		System.out.print("Last Name:");
-		String lastname = input.nextLine();
+		String lastname1 = input.nextLine();
 		System.out.print("User Name:");
-		String username = input.nextLine();
+		String username1 = input.nextLine();
 		System.out.print("Password:");
-		String password = input.nextLine();
+		String password1 = input.nextLine();
 		
 		//gets input to set up a checking or savings account
 		//loops through if neither hasnt been selected
@@ -80,11 +81,23 @@ public class ApplicationREPL {
 			}
 		}
 		
-
-		Application application = new Application(appid, firstname, lastname, username, password,
-				usertype, acttype, depositamount, "applied");
+		System.out.println("Second User Info:");
+		System.out.print("First Name:");
+		String firstname2 = input.nextLine();
+		System.out.print("Last Name:");
+		String lastname2 = input.nextLine();
+		System.out.print("User Name:");
+		String username2 = input.nextLine();
+		System.out.print("Password:");
+		String password2 = input.nextLine();
 		
-		application.saveNewApplication();
+
+		
+
+		//Application application = new Application(appid, firstname, lastname, username, password,
+		//		usertype, acttype, depositamount, "applied");
+		
+		//application.saveNewApplication();
 		
 		
 		System.out.println("");
@@ -102,7 +115,7 @@ public class ApplicationREPL {
 		
 		System.out.println("");
 		System.out.println("******************************************");
-		System.out.println("Single Account Application Menu");
+		System.out.println("Joint Account Application Menu");
 		System.out.println("Choose your option below:");
 		System.out.println("Press 1 to Apply:");
 		System.out.println("Press 2 to Exit:");

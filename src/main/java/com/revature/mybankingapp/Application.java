@@ -3,16 +3,61 @@ package com.revature.mybankingapp;
 import com.revaure.mybankingapp.dao.ApplicationDAOImpl;
 
 public class Application {
-	long applicationid;
-	String firstname;
-	String lastname;
-	String username;
-	String password;
-	String usertype;
-	String accounttype;
-	long depositamount;
-	String status;
-	long currentuser;
+	private long applicationid;
+	private String firstname;
+	private String lastname;
+	private String username;
+	private String password;
+	private String usertype;
+	private String accounttype;
+	private long depositamount;
+	private String status;
+	private long currentuser;
+	private String firstname2;
+	private String lastname2;
+	private String username2;
+	private String password2;
+	private long currentuser2; 
+	
+	public String getFirstname2() {
+		return firstname2;
+	}
+
+	public void setFirstname2(String firstname2) {
+		this.firstname2 = firstname2;
+	}
+
+	public String getLastname2() {
+		return lastname2;
+	}
+
+	public void setLastname2(String lastname2) {
+		this.lastname2 = lastname2;
+	}
+
+	public String getUsername2() {
+		return username2;
+	}
+
+	public void setUsername2(String username2) {
+		this.username2 = username2;
+	}
+
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
+
+	public long getCurrentuser2() {
+		return currentuser2;
+	}
+
+	public void setCurrentuser2(long currentuser2) {
+		this.currentuser2 = currentuser2;
+	}
 
 	public long getCurrentuser() {
 		return currentuser;
@@ -44,7 +89,7 @@ public class Application {
 	}
 
 	public Application() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public long getApplicationid() {
