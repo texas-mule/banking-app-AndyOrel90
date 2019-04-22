@@ -3,7 +3,10 @@ package com.revature.mybankingapp.REPL;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.revature.mybankingapp.BankAdmin;
 import com.revature.mybankingapp.Customer;
+import com.revature.mybankingapp.Employee;
+import com.revature.mybankingapp.User;
 import com.revaure.mybankingapp.dao.CustomerDAO;
 import com.revaure.mybankingapp.dao.CustomerDAOImpl;
 
@@ -84,7 +87,7 @@ public class MainREPL {
 			     				//run user login interface
 			     				switch(this.loggedinuserobj.getUsertype()) {
 			     					case "customer": CustomerREPL crepl = new CustomerREPL();
-			     									 crepl.run();
+			     									 crepl.run(loggedinuserobj);
 			     						break;
 			     					case "employee": //EmployeeREPL erepl = new EmployeeREPL();
 			     									 //erepl.run();

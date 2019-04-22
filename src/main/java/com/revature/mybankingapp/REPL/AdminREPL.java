@@ -59,7 +59,6 @@ public class AdminREPL {
 			}
 		}
 
-		System.out.println("went to null in AdminREPL");
 		return null;
 	}
 
@@ -330,7 +329,7 @@ public class AdminREPL {
 
 	}
 
-	public void run(BankAdmin loggedinuser) {
+	public void run(Customer loggedinuser) {
 
 		Scanner input = new Scanner(System.in);
 		int option = 0;

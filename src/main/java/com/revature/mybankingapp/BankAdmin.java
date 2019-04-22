@@ -10,6 +10,7 @@ public class BankAdmin extends User {
 
 	public void printApplications(ArrayList<Application> applications) {
 
+		System.out.println("All Applications");
 		for (Application i : applications) {
 			System.out.println("* " + i.toString());
 		}
@@ -18,6 +19,7 @@ public class BankAdmin extends User {
 
 	public void printCustomers(ArrayList<Customer> customers) {
 
+		System.out.println("All Customers");
 		for (Customer i : customers) {
 			System.out.println("* " + i.toString());
 		}

@@ -4,13 +4,13 @@ import com.revaure.mybankingapp.dao.AccountDAOImpl;
 import com.revaure.mybankingapp.dao.ApplicationDAOImpl;
 
 public class Account {
-	long accountnumber;
-	long ownerid1;
-	long ownerid2;
-	long routingnumber;
-	long accountbalance;
-	String accounttype;
-	AccountDAOImpl dao = new AccountDAOImpl();
+	private long accountnumber;
+	private long ownerid1;
+	private long ownerid2;
+	private long routingnumber;
+	private long accountbalance;
+	private String accounttype;
+	private AccountDAOImpl dao = new AccountDAOImpl();
 
 	public long getAccountnumber() {
 		return accountnumber;
