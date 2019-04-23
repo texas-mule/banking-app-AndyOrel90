@@ -307,13 +307,9 @@ public class CustomerREPL extends ConsoleREPL {
 							this.loggedincustomer.getLastname(), this.loggedincustomer.getUsername(), this.loggedincustomer.getUserid());
 					crepl.run();
 				case 6: // apply for a joint account
-					int count6 = 0;
-					while (this.option6()) {
-						if (count6 >= 2) {
-							break;
-						}
-						count6++;
-					}
+					CustomerApplicationREPL cjrepl = new CustomerApplicationREPL(this.loggedincustomer.getFirstname(),
+							this.loggedincustomer.getLastname(), this.loggedincustomer.getUsername(), this.loggedincustomer.getUserid());
+					cjrepl.run();
 					break;
 				case 0:
 					exit = false;

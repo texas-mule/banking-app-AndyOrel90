@@ -150,6 +150,106 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 
 	}
 
+	public void saveNewJointApplication(Application application) {
+
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		int success = 0;
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "INSERT INTO \"Applications\" (firstname, lastname, username, password, usertype, accounttype, depositamount, status, firstname2, lastname2, username2, password2) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+
+			// Setup PreparedStatement
+			stmt = connection.prepareStatement(sql);
+
+			// Add parameters for prepared statement
+
+			stmt.setString(1, application.getFirstname());
+			stmt.setString(2, application.getLastname());
+			stmt.setString(3, application.getUsername());
+			stmt.setString(4, application.getPassword());
+			stmt.setString(5, application.getUsertype());
+			stmt.setString(6, application.getAccounttype());
+			stmt.setLong(7, application.getDepositamount());
+			stmt.setString(8, application.getStatus());
+			stmt.setString(9, application.getFirstname2());
+			stmt.setString(10, application.getLastname2());
+			stmt.setString(11, application.getUsername2());
+			stmt.setString(12, application.getPassword2());
+
+			success = stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		/*
+		 * if (success == 0) { // then update didn't occur, throw an exception //throw
+		 * new Exception("Insert Application failed: " + application); }
+		 */
+
+	}
+
+	public void saveNewJointApplicationFromUser(Application application) {
+
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		int success = 0;
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "INSERT INTO \"Applications\" (firstname, lastname, username, password, usertype, accounttype, depositamount, status, firstname2, lastname2, username2, password2) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+
+			// Setup PreparedStatement
+			stmt = connection.prepareStatement(sql);
+
+			// Add parameters for prepared statement
+
+			stmt.setString(1, application.getFirstname());
+			stmt.setString(2, application.getLastname());
+			stmt.setString(3, application.getUsername());
+			stmt.setString(4, application.getPassword());
+			stmt.setString(5, application.getUsertype());
+			stmt.setString(6, application.getAccounttype());
+			stmt.setLong(7, application.getDepositamount());
+			stmt.setString(8, application.getStatus());
+			stmt.setString(9, application.getFirstname2());
+			stmt.setString(10, application.getLastname2());
+			stmt.setString(11, application.getUsername2());
+			stmt.setString(12, application.getPassword2());
+
+			success = stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		/*
+		 * if (success == 0) { // then update didn't occur, throw an exception //throw
+		 * new Exception("Insert Application failed: " + application); }
+		 */
+
+	}
+
 	public void saveNewApplicationFromUser(Application application) {
 
 		Connection connection = null;
@@ -233,7 +333,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 				e.printStackTrace();
 			}
 		}
-		
+
 		userid = this.insertUserWhenApproved(application);
 		this.insertAccountWhenApproved(application, userid);
 
@@ -344,6 +444,15 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 				a.setDepositamount(rs.getLong("depositamount"));
 				a.setStatus(rs.getString("status"));
 				a.setCurrentuser(rs.getLong("currentuser"));
+
+				if (a.getStatus().equals(new String("jointapplied"))
+						|| a.getStatus().equals(new String("jointappliedfromcustomer"))) {
+					a.setFirstname2(rs.getString("firstname2"));
+					a.setLastname2(rs.getString("lastname2"));
+					a.setUsername2(rs.getString("username2"));
+					a.setPassword2(rs.getString("password2"));
+					a.setIsjointaccount(true);
+				}
 
 				apps.add(a);
 			}

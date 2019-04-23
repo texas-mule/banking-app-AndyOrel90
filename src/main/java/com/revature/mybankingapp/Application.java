@@ -18,6 +18,8 @@ public class Application {
 	private String username2;
 	private String password2;
 	private long currentuser2; 
+	private boolean isjointaccount = false;
+	private ApplicationDAOImpl dao = new ApplicationDAOImpl();
 	
 	public String getFirstname2() {
 		return firstname2;
@@ -69,9 +71,19 @@ public class Application {
 
 	@Override
 	public String toString() {
-		return "Application [applicationid=" + applicationid + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", username=" + username + ", password=" + password + ", usertype=" + usertype + ", accounttype="
-				+ accounttype + ", depositamount=" + depositamount + ", status=" + status + "]";
+		if(this.isjointaccount)
+		{
+			return "Application [applicationid=" + applicationid + ", firstname=" + firstname + ", lastname=" + lastname
+					+ ", username=" + username + ", password=" + password + ", usertype=" + usertype + ", accounttype="
+					+ accounttype + ", depositamount=" + depositamount + ", status=" + status + ", Second Firstname=" + firstname2 + ", Second Lastname=" + lastname2 + ", Second Username=" + username2 + ", Second Password=" + password2 + "]";
+		}
+		else
+		{
+			return "Application [applicationid=" + applicationid + ", firstname=" + firstname + ", lastname=" + lastname
+					+ ", username=" + username + ", password=" + password + ", usertype=" + usertype + ", accounttype="
+					+ accounttype + ", depositamount=" + depositamount + ", status=" + status + "]";
+		}
+		
 	}
 
 	public Application(long applicationid, String firstname, String lastname, String username, String password,
@@ -166,16 +178,32 @@ public class Application {
 
 	public void saveNewApplication() {
 
-		ApplicationDAOImpl dao = new ApplicationDAOImpl();
-		dao.saveNewApplication(this);
+		this.dao.saveNewApplication(this);
+
+	}
+	
+	public void saveNewJointApplication() {
+
+		this.dao.saveNewJointApplication(this);
 
 	}
 
 	public void saveNewApplicationFromUser() {
 
-		ApplicationDAOImpl dao = new ApplicationDAOImpl();
-		dao.saveNewApplicationFromUser(this);
+		this.dao.saveNewApplicationFromUser(this);
 
+	}
+	
+	public void saveNewJointApplicationFromUser(){
+		this.dao.saveNewJointApplicationFromUser(this);
+	}
+
+	public boolean getIsjointaccount() {
+		return isjointaccount;
+	}
+
+	public void setIsjointaccount(boolean isjointaccount) {
+		this.isjointaccount = isjointaccount;
 	}
 
 }

@@ -28,6 +28,16 @@ public class JointApplicationREPL {
 		System.out.print("Password:");
 		String password1 = input.nextLine();
 		
+		System.out.println("Second User Info:");
+		System.out.print("First Name:");
+		String firstname2 = input.nextLine();
+		System.out.print("Last Name:");
+		String lastname2 = input.nextLine();
+		System.out.print("User Name:");
+		String username2 = input.nextLine();
+		System.out.print("Password:");
+		String password2 = input.nextLine();
+		
 		//gets input to set up a checking or savings account
 		//loops through if neither hasnt been selected
 		while(exit1)
@@ -81,24 +91,23 @@ public class JointApplicationREPL {
 			}
 		}
 		
-		System.out.println("Second User Info:");
-		System.out.print("First Name:");
-		String firstname2 = input.nextLine();
-		System.out.print("Last Name:");
-		String lastname2 = input.nextLine();
-		System.out.print("User Name:");
-		String username2 = input.nextLine();
-		System.out.print("Password:");
-		String password2 = input.nextLine();
 		
-
+		Application application = new Application();
+		application.setFirstname(firstname1);
+		application.setLastname(lastname1);
+		application.setUsername(username1);
+		application.setPassword(password1);
+		application.setDepositamount(depositamount);
+		application.setStatus("jointapplied");
+		application.setAccounttype(acttype);
+		application.setFirstname2(firstname2);
+		application.setLastname2(lastname2);
+		application.setUsername2(username2);
+		application.setPassword2(password2);
+		application.setIsjointaccount(true);
+		application.setUsertype("customer");
 		
-
-		//Application application = new Application(appid, firstname, lastname, username, password,
-		//		usertype, acttype, depositamount, "applied");
-		
-		//application.saveNewApplication();
-		
+		application.saveNewJointApplication();
 		
 		System.out.println("");
 		System.out.println("******************************************");
