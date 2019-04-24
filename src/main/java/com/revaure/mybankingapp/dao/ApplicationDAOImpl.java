@@ -63,6 +63,110 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		 */
 	}
 
+	private long insertSecondUserWhenApproved(Application application) {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		long userid = 0;
+		int success;
+		long result = 0;
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "INSERT INTO \"Users\" (firstname, lastname, username, password, usertype) VALUES (?,?,?,?,?);SELECT currval('\"Users_userid_seq\"'::regclass);";
+
+			// Setup PreparedStatement
+			stmt = connection.prepareStatement(sql);
+
+			// Add parameters for prepared statement
+			stmt.setString(1, application.getFirstname2());
+			stmt.setString(2, application.getLastname2());
+			stmt.setString(3, application.getUsername2());
+			stmt.setString(4, application.getPassword2());
+			stmt.setString(5, application.getUsertype());
+
+			stmt.execute();
+
+			int nInserted = stmt.getUpdateCount();
+			if (nInserted == 1 && stmt.getMoreResults()) {
+				ResultSet rs = stmt.getResultSet();
+				if (rs.next()) {
+					userid = rs.getLong(1);
+				}
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return userid;
+		/*
+		 * if (success == 0) { // then update didn't occur, throw an exception //throw
+		 * new Exception("Insert User failed: " + application); }
+		 */
+	}
+
+	private long insertSecondUserWhenJointApprovedFromCustomer(Application application) {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		long userid = 0;
+		int success;
+		long result = 0;
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "INSERT INTO \"Users\" (firstname, lastname, username, password, usertype) VALUES (?,?,?,?,?);SELECT currval('\"Users_userid_seq\"'::regclass);";
+
+			// Setup PreparedStatement
+			stmt = connection.prepareStatement(sql);
+
+			// Add parameters for prepared statement
+			stmt.setString(1, application.getFirstname2());
+			stmt.setString(2, application.getLastname2());
+			stmt.setString(3, application.getUsername2());
+			stmt.setString(4, application.getPassword2());
+			stmt.setString(5, "customer");
+
+			stmt.execute();
+
+			int nInserted = stmt.getUpdateCount();
+			if (nInserted == 1 && stmt.getMoreResults()) {
+				ResultSet rs = stmt.getResultSet();
+				if (rs.next()) {
+					userid = rs.getLong(1);
+				}
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return userid;
+		/*
+		 * if (success == 0) { // then update didn't occur, throw an exception //throw
+		 * new Exception("Insert User failed: " + application); }
+		 */
+	}
+
 	public void insertAccountWhenApproved(Application application, long userid) {
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -78,6 +182,47 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			// Add parameters for prepared statement
 			stmt.setLong(1, userid);
 			stmt.setLong(2, 0);
+			stmt.setLong(3, 121042882);
+			stmt.setLong(4, application.getDepositamount());
+			stmt.setString(5, application.getAccounttype());
+			stmt.setString(6, "active");
+
+			success = stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		/*
+		 * if (success == 0) { // then update didn't occur, throw an exception //throw
+		 * new Exception("Insert User failed: " + application); }
+		 */
+	}
+
+	public void insertBothUsersToAccountWhenApproved(Application application, long userid, long userid2) {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		int success;
+
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "INSERT INTO \"Accounts\" (ownerid1, ownerid2, routingnumber, accountbalance, accounttype, accountstatus) VALUES (?,?,?,?,?,?)";
+
+			// Setup PreparedStatement
+			stmt = connection.prepareStatement(sql);
+
+			// Add parameters for prepared statement
+			stmt.setLong(1, userid);
+			stmt.setLong(2, userid2);
 			stmt.setLong(3, 121042882);
 			stmt.setLong(4, application.getDepositamount());
 			stmt.setString(5, application.getAccounttype());
@@ -303,6 +448,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		PreparedStatement stmt = null;
 		int success = 0;
 		long userid;
+		long userid2;
 
 		try {
 			connection = DAOUtilities.getConnection();
@@ -334,8 +480,29 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			}
 		}
 
-		userid = this.insertUserWhenApproved(application);
-		this.insertAccountWhenApproved(application, userid);
+		
+		if (application.getIsjointaccount()) {
+			
+			switch (application.getStatus()) {
+			case "jointapplied":
+				userid = this.insertUserWhenApproved(application);
+				userid2 = this.insertSecondUserWhenApproved(application);
+				this.insertBothUsersToAccountWhenApproved(application, userid, userid2);
+				break;
+			case "jointappliedfromcustomer":
+				userid = application.getCurrentuser();
+				userid2 = this.insertSecondUserWhenApproved(application);
+				this.insertBothUsersToAccountWhenApproved(application, userid, userid2);
+				break;
+			default:
+				userid = this.insertUserWhenApproved(application);
+				this.insertAccountWhenApproved(application, userid);
+			}
+
+		} else {
+			userid = this.insertUserWhenApproved(application);
+			this.insertAccountWhenApproved(application, userid);
+		}
 
 	}
 

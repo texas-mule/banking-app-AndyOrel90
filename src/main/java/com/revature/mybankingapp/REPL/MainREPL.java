@@ -44,8 +44,8 @@ public class MainREPL {
 	}
 	
 	public void run() {
-		//TODO add interface to apply for joint accounts for both user, main interface
-		//left it at added methods to applications so still need to add functionality for joint accounts
+		//TODO add approve joint account from admin view
+		//TODO check what happens if user already exists shouldnt allow insert user to app
 		Scanner input = new Scanner(System.in);
 		int option = 0;
 		boolean exit = true;
