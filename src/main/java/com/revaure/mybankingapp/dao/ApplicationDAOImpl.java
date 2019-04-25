@@ -353,7 +353,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 
 		try {
 			connection = DAOUtilities.getConnection();
-			String sql = "INSERT INTO \"Applications\" (firstname, lastname, username, password, usertype, accounttype, depositamount, status, firstname2, lastname2, username2, password2) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"Applications\" (firstname, lastname, username, password, usertype, accounttype, depositamount, status, firstname2, lastname2, username2, password2, currentuser) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			// Setup PreparedStatement
 			stmt = connection.prepareStatement(sql);
@@ -372,6 +372,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt.setString(10, application.getLastname2());
 			stmt.setString(11, application.getUsername2());
 			stmt.setString(12, application.getPassword2());
+			stmt.setLong(13, application.getCurrentuser());
 
 			success = stmt.executeUpdate();
 

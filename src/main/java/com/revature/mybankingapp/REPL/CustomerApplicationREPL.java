@@ -188,6 +188,7 @@ public class CustomerApplicationREPL {
 		application.setPassword2(password2);
 		application.setIsjointaccount(true);
 		application.setUsertype("customer");
+		application.setCurrentuser(this.userid);
 
 		application.saveNewJointApplicationFromUser();
 
