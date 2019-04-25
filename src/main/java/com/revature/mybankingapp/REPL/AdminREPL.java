@@ -96,11 +96,10 @@ public class AdminREPL {
 				{
 					this.admin.approveApplication(app);
 				}
-				
 				return false;
 			}
 		}
-
+		
 	}
 
 	private boolean option4() {

@@ -3,10 +3,9 @@ package com.revature.mybankingapp.REPL;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.revature.mybankingapp.BankAdmin;
+import org.apache.log4j.Logger;
+
 import com.revature.mybankingapp.Customer;
-import com.revature.mybankingapp.Employee;
-import com.revature.mybankingapp.User;
 import com.revaure.mybankingapp.dao.CustomerDAO;
 import com.revaure.mybankingapp.dao.CustomerDAOImpl;
 
@@ -14,6 +13,8 @@ import com.revaure.mybankingapp.dao.CustomerDAOImpl;
 public class MainREPL {
 	
 	private Customer loggedinuserobj;
+	
+	private static final Logger log = Logger.getLogger(MainREPL.class.getName());
 	
 	private boolean handleUserLogin(String username, String password) {
 		Customer loggedinuser = new Customer();
@@ -39,7 +40,6 @@ public class MainREPL {
 		String username = input.nextLine();
 		System.out.print("Password: ");
 		String password = input.nextLine();
-		
 		return this.handleUserLogin(username, password);
 	}
 	
@@ -90,23 +90,29 @@ public class MainREPL {
 			     				switch(this.loggedinuserobj.getUsertype()) {
 			     					case "customer": CustomerREPL crepl = new CustomerREPL();
 			     									 crepl.run(loggedinuserobj);
+			     									 log.info("The Following User has loggedin: " + loggedinuserobj.getUserid() + " " + loggedinuserobj.getFirstname() + " " + loggedinuserobj.getLastname());
 			     						break;
 			     					case "employee": EmployeeREPL erepl = new EmployeeREPL();
 			     									 erepl.run(loggedinuserobj);
+			     									log.info("The Following User has loggedin: " + loggedinuserobj.getUserid() + " " + loggedinuserobj.getFirstname() + " " + loggedinuserobj.getLastname());
 			     						break;
 			     					case "admin": AdminREPL arepl = new AdminREPL();
 			     								  arepl.run(loggedinuserobj);
+			     								 log.info("The Following User has loggedin: " + loggedinuserobj.getUserid() + " " + loggedinuserobj.getFirstname() + " " + loggedinuserobj.getLastname());
 			     						break;
 			     				}
 			     			}
 	     					break;
 	     			case 2: JointApplicationREPL arepl = new JointApplicationREPL();
 	     					arepl.run();
+	     					log.info("The Following User has loggedin: " + loggedinuserobj.getUserid() + " " + loggedinuserobj.getFirstname() + " " + loggedinuserobj.getLastname());
 	     					break;
 	     			case 3: JointApplicationREPL jarepl = new JointApplicationREPL();
  							jarepl.run();
+ 							log.info("The Following User has loggedin: " + loggedinuserobj.getUserid() + " " + loggedinuserobj.getFirstname() + " " + loggedinuserobj.getLastname());
  					break;
 	     			case 0: exit = false;
+	     			log.info("The Following User has loggedout: " + loggedinuserobj.getUserid() + " " + loggedinuserobj.getFirstname() + " " + loggedinuserobj.getLastname());
 	     					System.out.println("Enjoy your day!!");
  							break;
 	     			default: System.out.println("Try again");
@@ -114,7 +120,7 @@ public class MainREPL {
 	     		}
 	        }
 		}
-		
+		input.close();
 	}
 
 }
