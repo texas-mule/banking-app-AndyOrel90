@@ -102,7 +102,7 @@ public class MainREPL {
 			     				}
 			     			}
 	     					break;
-	     			case 2: JointApplicationREPL arepl = new JointApplicationREPL();
+	     			case 2: ApplicationREPL arepl = new ApplicationREPL();
 	     					arepl.run();
 	     					log.info("The Following User has loggedin: " + loggedinuserobj.getUserid() + " " + loggedinuserobj.getFirstname() + " " + loggedinuserobj.getLastname());
 	     					break;

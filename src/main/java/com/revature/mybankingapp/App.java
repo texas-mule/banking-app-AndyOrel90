@@ -10,7 +10,6 @@ public class App
 {
     public static void main( String[] args )
     {	
-    	//TODO tested customer transfer, deposit, withdraw
     	MainREPL main = new MainREPL();
     	
     	main.run();
