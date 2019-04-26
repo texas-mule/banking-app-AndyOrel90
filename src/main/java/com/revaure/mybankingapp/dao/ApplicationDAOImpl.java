@@ -183,7 +183,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt.setLong(1, userid);
 			stmt.setLong(2, 0);
 			stmt.setLong(3, 121042882);
-			stmt.setLong(4, application.getDepositamount());
+			stmt.setDouble(4, application.getDepositamount());
 			stmt.setString(5, application.getAccounttype());
 			stmt.setString(6, "active");
 
@@ -224,7 +224,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt.setLong(1, userid);
 			stmt.setLong(2, userid2);
 			stmt.setLong(3, 121042882);
-			stmt.setLong(4, application.getDepositamount());
+			stmt.setDouble(4, application.getDepositamount());
 			stmt.setString(5, application.getAccounttype());
 			stmt.setString(6, "active");
 
@@ -270,7 +270,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt.setString(4, application.getPassword());
 			stmt.setString(5, application.getUsertype());
 			stmt.setString(6, application.getAccounttype());
-			stmt.setLong(7, application.getDepositamount());
+			stmt.setDouble(7, application.getDepositamount());
 			stmt.setString(8, application.getStatus());
 
 			success = stmt.executeUpdate();
@@ -316,7 +316,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt.setString(4, application.getPassword());
 			stmt.setString(5, application.getUsertype());
 			stmt.setString(6, application.getAccounttype());
-			stmt.setLong(7, application.getDepositamount());
+			stmt.setDouble(7, application.getDepositamount());
 			stmt.setString(8, application.getStatus());
 			stmt.setString(9, application.getFirstname2());
 			stmt.setString(10, application.getLastname2());
@@ -366,7 +366,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt.setString(4, application.getPassword());
 			stmt.setString(5, application.getUsertype());
 			stmt.setString(6, application.getAccounttype());
-			stmt.setLong(7, application.getDepositamount());
+			stmt.setDouble(7, application.getDepositamount());
 			stmt.setString(8, application.getStatus());
 			stmt.setString(9, application.getFirstname2());
 			stmt.setString(10, application.getLastname2());
@@ -417,7 +417,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 			stmt.setString(4, application.getPassword());
 			stmt.setString(5, application.getUsertype());
 			stmt.setString(6, application.getAccounttype());
-			stmt.setLong(7, application.getDepositamount());
+			stmt.setDouble(7, application.getDepositamount());
 			stmt.setString(8, application.getStatus());
 			stmt.setLong(9, application.getCurrentuser());
 
@@ -609,7 +609,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 				a.setPassword(rs.getString("password"));
 				a.setUsertype(rs.getString("usertype"));
 				a.setAccounttype(rs.getString("accounttype"));
-				a.setDepositamount(rs.getLong("depositamount"));
+				a.setDepositamount(rs.getDouble("depositamount"));
 				a.setStatus(rs.getString("status"));
 				a.setCurrentuser(rs.getLong("currentuser"));
 

@@ -15,7 +15,7 @@ public class Customer extends User {
 				+ username + ", password=" + password + ", usertype=" + usertype + ", accountlist=" + accountlist + "]";
 	}
 
-	public void withdraw(Account account, long amount) {
+	public void withdraw(Account account, double amount) {
 		
 		System.out.println("");
 		System.out.println(this.dao.withdraw(account, amount));
@@ -23,7 +23,7 @@ public class Customer extends User {
 		
 	}
 
-	public void transfer(long amount, Account fromaccount, long toaccountnumber) {
+	public void transfer(double amount, Account fromaccount, long toaccountnumber) {
 		
 		System.out.println("");
 		System.out.println(this.dao.transfer(amount, fromaccount, toaccountnumber));
@@ -31,7 +31,7 @@ public class Customer extends User {
 		
 	}
 
-	public void deposit(Account account, long amount) {
+	public void deposit(Account account, double amount) {
 		
 		System.out.println("");
 		System.out.println(this.dao.deposit(account, amount));

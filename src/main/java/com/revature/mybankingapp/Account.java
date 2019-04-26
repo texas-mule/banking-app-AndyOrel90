@@ -8,7 +8,7 @@ public class Account {
 	private long ownerid1;
 	private long ownerid2;
 	private long routingnumber;
-	private long accountbalance;
+	private double accountbalance;
 	private String accounttype;
 	private AccountDAOImpl dao = new AccountDAOImpl();
 
@@ -44,11 +44,11 @@ public class Account {
 		this.routingnumber = routingnumber;
 	}
 
-	public long getAccountbalance() {
-		return accountbalance;
+	public double getAccountbalance() {
+		return this.accountbalance;
 	}
 
-	public void setAccountbalance(long accountbalance) {
+	public void setAccountbalance(double accountbalance) {
 		this.accountbalance = accountbalance;
 	}
 
@@ -60,19 +60,19 @@ public class Account {
 		this.accounttype = accounttype;
 	}
 
-	public String withdraw(Account account, long amount) {
+	public String withdraw(Account account, double amount) {
 
 		return this.dao.withdraw(account, amount);
 		
 	}
 
-	public String transfer(long amount, Account fromaccount, long toaccountnumber) {
+	public String transfer(double amount, Account fromaccount, long toaccountnumber) {
 
 		return this.dao.transfer(amount, fromaccount, toaccountnumber);
 		
 	}
 
-	public String deposit(Account account, long amount) {
+	public String deposit(Account account, double amount) {
 		
 		return this.dao.deposit(account, amount);
 		

@@ -51,19 +51,19 @@ public class BankAdmin extends User {
 		System.out.println("");
 	}
 
-	public void withdraw(Account account, long withdrawamount) {
+	public void withdraw(Account account, double withdrawamount) {
 		System.out.println("");
 		System.out.println(account.withdraw(account, withdrawamount));
 		System.out.println("");
 	}
 
-	public void transfer(long amount, Account fromaccount, long toaccountnumber) {
+	public void transfer(double amount, Account fromaccount, long toaccountnumber) {
 		System.out.println("");
 		System.out.println(fromaccount.transfer(amount, fromaccount, toaccountnumber));
 		System.out.println("");
 	}
 
-	public void deposit(Account account, long depositamount) {
+	public void deposit(Account account, double depositamount) {
 		System.out.println("");
 		System.out.println(account.deposit(account, depositamount));
 		System.out.println("");

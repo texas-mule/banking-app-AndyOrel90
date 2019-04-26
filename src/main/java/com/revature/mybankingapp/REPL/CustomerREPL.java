@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 import com.revature.mybankingapp.Account;
 import com.revature.mybankingapp.Customer;
+import com.revature.mybankingapp.MoneyParser;
 
 public class CustomerREPL extends ConsoleREPL {
 
 	private Customer loggedincustomer = new Customer();
+	private MoneyParser mparser = new MoneyParser();
 
 	private Account getAccountByAccountnumber(long accountnumber) {
 		ArrayList<Account> actlist = new ArrayList();
@@ -30,7 +32,7 @@ public class CustomerREPL extends ConsoleREPL {
 		System.out.println("Enter Account Number you would like to deposit to");
 		System.out.print("Account Number: ");
 		Account account = new Account();
-		long depositamount = -1;
+		double depositamount = -1;
 		long accountnumber = -1;
 
 		try {
@@ -56,7 +58,8 @@ public class CustomerREPL extends ConsoleREPL {
 		System.out.print("Deposit Amount: ");
 
 		try {
-			depositamount = input.nextLong();
+			depositamount = input.nextDouble();
+			depositamount = mparser.parse(depositamount);
 
 		} catch (InputMismatchException e) {
 			input.next();
@@ -82,7 +85,7 @@ public class CustomerREPL extends ConsoleREPL {
 		System.out.println("Enter Account Number you would like to withdraw from");
 		System.out.print("Account Number: ");
 		Account account = new Account();
-		long withdrawamount = -1;
+		double withdrawamount = -1;
 		long accountnumber = -1;
 
 		try {
@@ -108,7 +111,8 @@ public class CustomerREPL extends ConsoleREPL {
 		System.out.print("Withdraw Amount: ");
 
 		try {
-			withdrawamount = input.nextLong();
+			withdrawamount = input.nextDouble();
+			withdrawamount = mparser.parse(withdrawamount);
 
 		} catch (InputMismatchException e) {
 			input.next();
@@ -133,7 +137,7 @@ public class CustomerREPL extends ConsoleREPL {
 		Scanner input = new Scanner(System.in);
 		Account fromaccountobj = new Account();
 		Account toaccountobj = new Account();
-		long transferamount = -1;
+		double transferamount = -1;
 		long fromaccountnumber = -1;
 		long toaccountnumber = -1;
 
@@ -187,7 +191,8 @@ public class CustomerREPL extends ConsoleREPL {
 		System.out.print("Transfer Amount: ");
 
 		try {
-			transferamount = input.nextLong();
+			transferamount = input.nextDouble();
+			transferamount = mparser.parse(transferamount);
 
 		} catch (InputMismatchException e) {
 			input.next();
@@ -220,14 +225,6 @@ public class CustomerREPL extends ConsoleREPL {
 					+ " Balance: " + actlist.get(i).getAccountbalance());
 		}
 		return false;
-	}
-
-	private boolean option5() {
-		return true;
-	}
-
-	private boolean option6() {
-		return true;
 	}
 
 	public void run(Customer loggedinuser) {

@@ -10,7 +10,7 @@ public class Application {
 	private String password;
 	private String usertype;
 	private String accounttype;
-	private long depositamount;
+	private double depositamount;
 	private String status;
 	private long currentuser;
 	private String firstname2;
@@ -87,7 +87,7 @@ public class Application {
 	}
 
 	public Application(long applicationid, String firstname, String lastname, String username, String password,
-			String usertype, String accounttype, long depositamount, String status) {
+			String usertype, String accounttype, double depositamount, String status) {
 		super();
 		this.applicationid = applicationid;
 		this.firstname = firstname;
@@ -160,11 +160,11 @@ public class Application {
 		this.accounttype = accounttype;
 	}
 
-	public long getDepositamount() {
-		return depositamount;
+	public double getDepositamount() {
+		return this.depositamount;
 	}
 
-	public void setDepositamount(long depositamount) {
+	public void setDepositamount(double depositamount) {
 		this.depositamount = depositamount;
 	}
 

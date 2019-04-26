@@ -104,9 +104,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return customer;
 	}
 
-	public String withdraw(Account account, long amount) {
+	public String withdraw(Account account, double amount) {
 
-		long newaccountbalance = account.getAccountbalance() - amount;
+		double newaccountbalance = account.getAccountbalance() - amount;
 
 		if (newaccountbalance < 0) {
 			return "Cannot withdraw an amount larger than your account balance";
@@ -123,7 +123,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				stmt = connection.prepareStatement(sql);
 
 				// Add parameters for prepared statement
-				stmt.setLong(1, newaccountbalance);
+				stmt.setDouble(1, newaccountbalance);
 
 				stmt.setLong(2, account.getAccountnumber());
 
@@ -152,9 +152,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	}
 
-	public String transfer(long amount, Account fromaccount, long toaccountnumber) {
+	public String transfer(double amount, Account fromaccount, long toaccountnumber) {
 
-		long newfromaccountbalance = fromaccount.getAccountbalance() - amount;
+		double newfromaccountbalance = fromaccount.getAccountbalance() - amount;
 
 		if (newfromaccountbalance < 0) {
 			return "Cannot withdraw an amount larger than your account balance";
@@ -171,7 +171,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				stmt = connection.prepareStatement(sql);
 
 				// Add parameters for prepared statement
-				stmt.setLong(1, newfromaccountbalance);
+				stmt.setDouble(1, newfromaccountbalance);
 
 				stmt.setLong(2, fromaccount.getAccountnumber());
 
@@ -201,7 +201,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				stmt = connection.prepareStatement(sql);
 
 				// Add parameters for prepared statement
-				stmt.setLong(1, amount);
+				stmt.setDouble(1, amount);
 
 				stmt.setLong(2, toaccountnumber);
 
@@ -229,9 +229,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}
 	}
 
-	public String deposit(Account account, long amount) {
-		long newaccountbalance = account.getAccountbalance() + amount;
-
+	public String deposit(Account account, double amount) {
+		double newaccountbalance = account.getAccountbalance() + amount;
 		Connection connection = null;
 		PreparedStatement stmt = null;
 
@@ -244,7 +243,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			stmt = connection.prepareStatement(sql);
 
 			// Add parameters for prepared statement
-			stmt.setLong(1, newaccountbalance);
+			stmt.setDouble(1, newaccountbalance);
 
 			stmt.setLong(2, account.getAccountnumber());
 
@@ -297,7 +296,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				a.setOwnerid1(rs.getLong("ownerid1"));
 				a.setOwnerid2(rs.getLong("ownerid2"));
 				a.setRoutingnumber(rs.getLong("routingnumber"));
-				a.setAccountbalance(rs.getLong("accountbalance"));
+				a.setAccountbalance(rs.getDouble("accountbalance"));
 				a.setAccounttype(rs.getString("accounttype"));
 
 				accounts.add(a);

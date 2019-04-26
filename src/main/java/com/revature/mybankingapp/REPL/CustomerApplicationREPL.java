@@ -4,12 +4,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.revature.mybankingapp.Application;
+import com.revature.mybankingapp.MoneyParser;
 
 public class CustomerApplicationREPL {
 	private String firstname;
 	private String lastname;
 	private long userid;
 	private String username;
+	
+	private MoneyParser mparser = new MoneyParser();
 
 	public CustomerApplicationREPL(String firstname, String lastname, String username, long userid) {
 		this.firstname = firstname;
@@ -28,7 +31,7 @@ public class CustomerApplicationREPL {
 		boolean exit1 = true;
 		int enteredaccounttype = 0;
 		boolean exit2 = true;
-		long depositamount = 25;
+		double depositamount = 25;
 		long currentuser = 0;
 
 		// gets input to set up a checking or savings account
@@ -65,7 +68,8 @@ public class CustomerApplicationREPL {
 
 			try {
 
-				depositamount = input.nextLong();
+				depositamount = input.nextDouble();
+				depositamount = mparser.parse(depositamount);
 
 			} catch (Exception e) {
 				input.next();
@@ -111,7 +115,7 @@ public class CustomerApplicationREPL {
 		boolean exit1 = true;
 		int enteredaccounttype = 0;
 		boolean exit2 = true;
-		long depositamount = 25;
+		double depositamount = 25;
 		long currentuser = 0;
 		
 		System.out.println("Second User Info:");
@@ -158,7 +162,8 @@ public class CustomerApplicationREPL {
 
 			try {
 
-				depositamount = input.nextLong();
+				depositamount = input.nextDouble();
+				depositamount = mparser.parse(depositamount);
 
 			} catch (Exception e) {
 				input.next();

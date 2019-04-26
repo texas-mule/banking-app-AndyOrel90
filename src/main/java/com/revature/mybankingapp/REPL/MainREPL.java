@@ -44,8 +44,7 @@ public class MainREPL {
 	}
 	
 	public void run() {
-		//TODO add approve joint account from admin view
-		//TODO check what happens if user already exists shouldnt allow insert user to app
+		
 		Scanner input = new Scanner(System.in);
 		int option = 0;
 		boolean exit = true;

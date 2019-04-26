@@ -4,8 +4,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.revature.mybankingapp.Application;
+import com.revature.mybankingapp.MoneyParser;
 
 public class JointApplicationREPL {
+	
+	private MoneyParser mparser = new MoneyParser();
 	
 	public void startApplication() {
 		Scanner input = new Scanner(System.in);
@@ -16,7 +19,7 @@ public class JointApplicationREPL {
 		boolean exit1 = true;
 		int enteredaccounttype = 0;
 		boolean exit2 = true;
-		long depositamount = 25;
+		double depositamount = 25;
 		
 		System.out.println("First User Info:");
 		System.out.print("First Name:");
@@ -73,7 +76,8 @@ public class JointApplicationREPL {
 			
 			try {
 				
-				depositamount = input.nextLong();
+				depositamount = input.nextDouble();
+				depositamount = mparser.parse(depositamount);
 				
 			} catch (Exception e) {
 				input.next();

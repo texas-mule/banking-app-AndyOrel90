@@ -21,6 +21,8 @@ public class AdminREPL {
 	private ArrayList<Account> accounts = new ArrayList<>();
 
 	private BankAdmin admin = new BankAdmin();
+	
+	private MoneyParser mparser = new MoneyParser();
 
 	public AdminREPL() {
 
@@ -155,7 +157,7 @@ public class AdminREPL {
 		System.out.println("Enter Account Number you would like to deposit to");
 		System.out.print("Account Number: ");
 		Account account = new Account();
-		long depositamount = -1;
+		double depositamount = -1;
 		long accountnumber = -1;
 
 		try {
@@ -181,7 +183,8 @@ public class AdminREPL {
 		System.out.print("Deposit Amount: ");
 
 		try {
-			depositamount = input.nextLong();
+			depositamount = input.nextDouble();
+			depositamount = mparser.parse(depositamount);
 
 		} catch (InputMismatchException e) {
 			input.next();
@@ -208,7 +211,7 @@ public class AdminREPL {
 		System.out.println("Enter Account Number you would like to withdraw from");
 		System.out.print("Account Number: ");
 		Account account = new Account();
-		long withdrawamount = -1;
+		double withdrawamount = -1;
 		long accountnumber = -1;
 
 		try {
@@ -234,7 +237,8 @@ public class AdminREPL {
 		System.out.print("Withdraw Amount: ");
 
 		try {
-			withdrawamount = input.nextLong();
+			withdrawamount = input.nextDouble();
+			withdrawamount = mparser.parse(withdrawamount);
 
 		} catch (InputMismatchException e) {
 			input.next();
@@ -260,7 +264,7 @@ public class AdminREPL {
 		Scanner input = new Scanner(System.in);
 		Account fromaccountobj = new Account();
 		Account toaccountobj = new Account();
-		long transferamount = -1;
+		double transferamount = -1;
 		long fromaccountnumber = -1;
 		long toaccountnumber = -1;
 
@@ -314,7 +318,8 @@ public class AdminREPL {
 		System.out.print("Transfer Amount: ");
 
 		try {
-			transferamount = input.nextLong();
+			transferamount = input.nextDouble();
+			transferamount = mparser.parse(transferamount);
 
 		} catch (InputMismatchException e) {
 			input.next();
