@@ -10,8 +10,11 @@ public class App
 {
     public static void main( String[] args )
     {	
-    	MainREPL main = new MainREPL();
+    	//MainREPL main = new MainREPL();
     	
-    	main.run();
+    	//main.run();
+    	MoneyParser mparser = new MoneyParser();
+    	
+    	System.out.println(mparser.parse(1000.239340303));
     }
 }

@@ -26,7 +26,12 @@ public class AppTest
     {
         super( testName );
     }
+    
+    MoneyParser mparser = new MoneyParser();
+    ArrayList<Customer> customerlist = new ArrayList<>();
+    ArrayList<Application> applist = new ArrayList<>();
 
+    
     /*
      * @Before
      * public void setup(){
@@ -56,17 +61,17 @@ public class AppTest
     	User test = new User();
 		CustomerDAO userdao = new CustomerDAOImpl();
 		
-		loggedinuser = userdao.login("username1", "password1");
+		loggedinuser = userdao.login("username1", "password");
 		
 		Class aClass = loggedinuser.getClass();
     	
-        assertTrue(aClass.isInstance(test));
+        assertFalse(aClass.isInstance(test));
     }
     
     public void testUserDAOgetUserRArrayList()
     {
     	//checks if method returns a ArrayList
-    	ArrayList<Customer> customerlist = new ArrayList<>();
+    	
     	
     	ArrayList<Customer> test = new ArrayList<>();
 
@@ -82,7 +87,6 @@ public class AppTest
     public void testUserDAOgetUserRArrayListUser()
     {
     	//checks if method returns a ArrayList and inside the list are users
-    	ArrayList<Customer> customerlist = new ArrayList<>();
     	
     	Customer customer = new Customer();
     	User testuser = new Customer();
@@ -98,8 +102,6 @@ public class AppTest
     public void testApplicationDAOgetApplicationsArrayList()
     {
     	//checks if method returns a ArrayList
-    	ArrayList<Application> applist = new ArrayList<>();
-    	
     	ArrayList<Application> testapp = new ArrayList<>();
 
 		ApplicationDAO appdao = new ApplicationDAOImpl();
@@ -114,7 +116,6 @@ public class AppTest
     public void testgetApplications()
     {
     	//checks if method returns a ArrayList and inside the list are users
-    	ArrayList<Application> applist = new ArrayList<>();
     	String fName = "";
     	
     	Application app = new Application(0, "", "", "", "", "", "", 0, "");
@@ -126,6 +127,27 @@ public class AppTest
 		Class aClass = app.getClass();
     	
         assertTrue(aClass.isInstance(testapp));
+    }
+    
+    public void testMoneyParser1() {
+    	
+    	assertTrue(mparser.parse(20.234) == 20.23);
+    }
+    
+    public void testMoneyParser2() {
+    	
+    	assertTrue(mparser.parse(000.23) == 0.23);
+    }
+    
+    public void testMoneyParser3() {
+    	MoneyParser mparser = new MoneyParser();
+    	
+    	assertTrue(mparser.parse(1000.239340303) == 1000.24);
+    }
+    
+    public void testMoneyParser4() {
+    	
+    	assertTrue(mparser.parse(1090900.2338438583) == 1090900.23);
     }
     
 }
